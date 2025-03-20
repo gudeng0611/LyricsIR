@@ -12,6 +12,3 @@ A simple Information Retrieval (IR) project for song lyrics.
 
 ## Data Source
 - All lyrics included in this repository are sourced from [AZLyrics](https://www.azlyrics.com/).
-
-## License
-- This project is licensed under the MIT License.

@@ -1,0 +1,11 @@
+# Requirements for BooleanLyricsIR System
+# This project uses only Python's Standard Library.
+# No third-party packages need to be installed.
+
+# Minimum Python version required:
+python >= 3.6
+
+# Standard Libraries used:
+ - os
+ - re
+ - collections

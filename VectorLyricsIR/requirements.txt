@@ -1,4 +1,4 @@
-# Requirements for BooleanLyricsIR System
+# Requirements for VectorLyricsIR System
 # This project uses only Python's Standard Library.
 # No third-party packages need to be installed.
 
@@ -8,4 +8,5 @@ python >= 3.8
 # Standard Libraries used:
  - os
  - re
+ - math
  - collections

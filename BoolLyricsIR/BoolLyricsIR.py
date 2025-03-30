@@ -95,32 +95,6 @@ def boolean_search(query):
             return set_union(set1, set2)
     return set()
 
-def phrase_search(phrase_raw):
-    """
-    Search for exact phrases appearing in documents by checking positional indexes.
-    Returns set of document IDs where the phrase appears consecutively.
-    """
-    words = preprocess(phrase_raw)
-    if not words:
-        return set()
-    result = set()
-    first_postings = inverted_index.get(words[0], {})
-    for doc_id, positions in first_postings.items():
-        for pos in positions:
-            match = True
-            for offset, word in enumerate(words[1:], 1):
-                post_map = inverted_index.get(word, {})
-                if doc_id not in post_map:
-                    match = False
-                    break
-                if (pos + offset) not in post_map[doc_id]:
-                    match = False
-                    break
-            if match:
-                result.add(doc_id)
-                break
-    return result
-
 def print_results(doc_ids):
     """
     Print the search results in "Artist/Song Title" format.
@@ -134,7 +108,7 @@ def print_results(doc_ids):
 def main():
     """
     Entry point of the Boolean IR system. Builds index and handles user queries
-    with support for boolean and phrase search.
+    with support for boolean search.
     """
     current_dir = os.path.dirname(os.path.abspath(__file__))
     base_path = os.path.join(current_dir, "..", "Lyrics")
@@ -146,10 +120,7 @@ def main():
         query = input("Enter query (or 'exit'): ").lower()
         if query == "exit":
             break
-        if query.startswith('"') and query.endswith('"'):
-            result = phrase_search(query[1:-1])
-        else:
-            result = boolean_search(query)
+        result = boolean_search(query)
         print_results(result)
 
 if __name__ == "__main__":
